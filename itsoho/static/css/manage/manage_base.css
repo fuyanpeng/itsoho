@@ -1,0 +1,47 @@
+#content {
+    background-color: #FFFFFF;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+    width: 1024px;
+    min-height: 600px;
+    margin-top: 40px;
+}
+
+.manage-menu {
+    float: left;
+    width: 150px;
+    color: #FFFFFF;
+    text-shadow: none;
+}
+
+.manage-menu .level-1 a:hover {
+    font-weight: normal;
+}
+
+.manage-menu .level-2 a:hover {
+    font-weight: bolder;
+}
+
+.manage-menu li.option {
+    background-color: #474747;
+    height: 30px;
+    border-bottom: 1px solid #FFFFFF;
+    line-height: 30px;
+    padding-left: 15px;
+}
+
+.manage-menu li.secondary {
+    background-color: rgba(71,71,71,0.15);
+    color: #646464;
+    font-size: 12px;
+    line-height: 30px;
+    height: 30px;
+    padding-left: 30px;
+    border-bottom: 1px solid #FFFFFF;
+}
+
+.manage-main {
+    float: right;
+    width: 850px;
+}
+
+

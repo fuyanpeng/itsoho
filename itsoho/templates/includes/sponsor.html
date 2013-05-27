@@ -1,0 +1,7 @@
+{% for sponsor in sponsors %}
+<div class="sponsor">
+    <a class="sponsor-link" href="{{ sponsor.url }}" target="_blank">
+        <img src="{{ sponsor.get_cover_url }}" title="{{ sponsor.name }}"/>
+    </a>
+</div>
+{% endfor %}

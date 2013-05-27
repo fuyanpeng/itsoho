@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% load current_nav %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/charge/charge_index.css" type="text/css" media="all" />
+{% endblock %}
+
+{% block content %}
+<div class="charge-list">
+    <ul>
+        <li class="charge-list-item"><a {% current_nav '/charge/' %} href="{% url 'charge_index' %}">全部</a></li>
+        {% for category in categories %}
+        <li class="charge-list-item">
+        <a {% current_nav category.get_absolute_url %} href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="charge-content">
+    {% for entry in entries %}
+    <script>
+        $(document).ready(function(){
+            $("#control{{ entry.pk }}").toggle(function(){
+                $("#entry{{ entry.pk }}").html("{{ entry.text }}");
+                $("#control{{ entry.pk }}").html("收起");
+            }, function(){
+                $("html,body").animate({scrollTop:$("#title{{ entry.pk }}").offset().top-20},10);
+                $("#entry{{ entry.pk }}").html("{{ entry.get_summary }}...");
+                $("#control{{ entry.pk }}").html("展开");
+            });
+        });
+    </script>
+    <div class="entry-list">
+        <div class="entry-account">
+            <span class="avatar-point"></span>
+            <img src="{{ entry.user.get_avatar_url }}"/>
+            <div>
+                {{ entry.user.username }}
+            </div>
+        </div>
+        <div class="entry-content">
+            <div id="title{{ entry.pk }}" class="entry-title">
+                <a href="{% url 'charge_entry_detail' entry.category.id entry.id entry.slug %}" target="_blank">
+                    {{ entry.title }}
+                </a>
+            </div>
+            <div class="entry-time">{{ entry.created_at |date:"Y-m-d H:i" }}</div>
+            <div class="entry-summary">
+                <span id="entry{{ entry.pk }}" >{{ entry.get_summary }}...</span>
+                <span><a id="control{{ entry.pk }}" class="control" href="">展开</a></span>
+            </div>
+        </div>
+        <div class="entry-fotter">
+            <span>评论</span>
+            <span>收藏</span>
+            <span>推荐</span>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<div style="clear:both"></div>
+{% endblock %}

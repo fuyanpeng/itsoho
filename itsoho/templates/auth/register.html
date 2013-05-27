@@ -1,0 +1,71 @@
+{% extends 'home/home.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/home.css" type="text/css" media="all" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/auth/auth.css" type="text/css" media="all" />
+{% endblock %}
+
+{% block js %}
+<script>
+$(document).ready(function(){
+    var error = $(".errorclass").html();
+    if(!error){
+        $(".home-main").animate({
+            margin:"40px auto;",
+        },400);
+        $(".register-form").animate({
+            marginLeft:'0',
+        },1200);
+    }
+    else{
+        $("home-main").css("margin","40px auto");
+        $(".register-form").css("margin-left","0");
+    }
+
+    $("input").keypress(function(event){
+        if(event.which == 13){
+            event.preventDefault();
+            $("form").submit();
+        }
+    });
+});
+</script>
+{% endblock%}
+
+{% block account %}
+
+<div class="register-main">
+<form class="register-form" action="{% url 'auth_register' %}" method="post">
+    {% csrf_token %}
+    <div>
+        <input class="text-input" type="text" name="username" placeholder=" 用户名" />
+        {% if form.username.errors %}
+        {% for error in form.username.errors %}
+        <span class="errorclass">{{ error }}</span>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+    <div>
+        <input class="text-input" type="text" name="email" placeholder=" 邮箱" />
+        {% if form.email.errors %}
+        {% for error in form.email.errors %}
+        <span class="errorclass">{{ error }}</span>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+    <div>
+        <input  class="text-input" type="password" name="password" placeholder=" 密码" />
+        {% if form.password.errors %}
+        {% for error in form.password.errors %}
+        <span class="errorclass">{{ error }}</span>
+        {% endfor %}
+        {% endif %}
+    </div>
+    
+    <a onclick="document.forms[0].submit();return false;">注 册</a>
+</form>
+</div>
+
+{% endblock %}

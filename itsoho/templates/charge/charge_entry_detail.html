@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/charge/charge_detail.css" type="text/css" media="all" />
+{% endblock %}
+
+{% block js %}
+<script>
+    $(document).ready(function(){
+        $(".submit").click(function(){
+            var reply = $("textarea").val();
+            if ($.trim(reply)){
+                $("#commentform").submit();
+                return false;
+            }else{
+                alert("说点什么吧！");
+                return false;
+            }
+        });
+    });
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="entry-detail">
+    <div class="entry-header">
+        <div class="avatar">
+            <img src="{{ entry.user.get_avatar_url }}" title="{{ entry.user.username }}"/>
+        </div>
+        <div class="outline">
+            <p class="title">{{ entry.title }}</p>
+            <p class="status">
+                {{ entry.user.username }} 发表于 
+                {{ entry.created_at|date:"Y-m-d H:i" }}
+                {{ entry.get_comment_count }}评论/{{ entry.click_count }}点击
+                <span style="float:right;">标签：{{ entry.tags_name }} </span>
+            </p>
+        </div>
+        <div class="content" >
+            {{ entry.text|safe }}
+        </div>
+    </div>
+
+    <div class="comment-list">
+        <div style="margin-top: 10px;"> 评论 </div>
+        <hr />
+        {% for comment in comments %}
+        <div id="comment-{{ comment.id }}" class="comment-group">
+            <div class="avatar">
+                <img src="{{ comment.user.get_avatar_url }}" title="{{ comment.user.username }}"/>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <strong>{{ comment.user }}</strong>
+                    {{ comment.created_at|date:"Y-m-d H:i" }}
+                </div>
+                <div class="comment-content">
+                    {{ comment.content }}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+            <div>暂无评论，快来参与讨论吧</div>
+        {% endfor %}
+    </div>
+
+    <div class="comment-reply">
+        <p>添加一条新评论</p>
+        <hr />
+        {% if user.is_authenticated %}
+            <form  id="commentform" action="." method="POST">
+                {% csrf_token %}
+                {{ form.content }}
+                <a href="" class="submit">评 论</a>
+                <span style="float:right; margin-top:10px; color:#999999;">
+                    不以帮助他人为目的的评论都是耍流氓
+                </span>
+            </form>
+        {% else %}
+            <div style="margin-top:10px;">登录后才能评论哦！</div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="entry-siderbar">
+    <div class="tags">
+        {% include 'includes/tags.html' %}
+    </div>
+    {% include 'includes/sponsor.html' %}
+</div>
+<div style="clear:both"></div>
+{% endblock %}

@@ -1,0 +1,143 @@
+#content {
+    margin-top: 30px;
+}
+
+.entry-detail {
+    float: left;
+    width: 750px;
+    min-height: 1000px;
+    text-shadow: none;
+}
+
+.entry-detail .entry-header,
+.entry-detail .comment-list,
+.entry-detail .comment-reply {
+    margin-bottom: 25px;
+    padding: 1px 15px 15px;
+    background-color: #FFFFFF;
+    border-radius: 3px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.4); 
+}
+
+.entry-header .avatar {
+    display: inline-block;
+    height: 60px;
+    width: 60px;
+    overflow: hidden;
+}
+
+.entry-header .avatar img {
+    width: 60px;
+    border-radius: 3px;
+}
+
+.entry-header .outline {
+    display: inline-block;
+}
+
+.entry-header .outline p.title {
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.entry-header .outline p.status {
+    font-size: 12px;
+    width: 640px;
+}
+
+.entry-detail .content {
+    clear: both;
+    padding-top: 10px;
+    border-top: 1px dashed #999999;
+    line-height: 180%;
+}
+
+.comment-list .comment-group > * {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #CCCCCC;
+    vertical-align: top;
+}
+
+.comment-list .comment-group .avatar {
+    display: inline-block;
+    height: 60px;
+    width: 60px;
+    overflow: hidden;
+}
+
+.comment-list .comment-group .avatar img {
+    width: 60px;
+    border-radius: 3px;
+}
+
+.comment-list .comment-group .comment {
+    display: inline-block;
+    margin-left: 10px;
+    width: 645px;
+}
+
+.comment-list .comment-group .comment .comment-header {
+    color: #999999;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.comment-reply hr, .comment-list hr {
+    border: none;
+    height: 5px;
+    border-top: 1px dashed #999999;
+}
+
+.comment-reply textarea {
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    width: 100%;
+    height: 200px;
+    resize: none;
+}
+
+.comment-reply a.submit {
+    background-color: #717171;
+    line-height: 40px;
+    color: #FFFFFF;
+    padding: 5px 20px;
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.comment-reply a:hover {
+    font-weight: normal;
+    background-color: #333333;
+}
+
+.entry-siderbar {
+    float:right;
+    width: 250px;
+}
+
+.entry-siderbar .tags {
+    background-color: #FFFFFF;
+    box-shadow: 1px 2px 4px rgba(0,0,0,0.6);
+    border-radius: 3px;
+    padding: 10px;
+    margin-bottom: 20px;
+    text-shadow: none;
+}
+
+
+.entry-siderbar .tags a {
+    padding: 0 2px;
+    line-height: 150%;
+}
+
+.entry-siderbar .tags a:hover {
+    font-weight: normal;
+}
+
+.entry-siderbar img {
+    width: 250px;
+    border-radius: 5px;
+    box-shadow: 1px 2px 4px rgba(0,0,0,0.6);
+    margin-bottom: 20px;
+}
+

@@ -1,0 +1,67 @@
+{% extends 'home/home.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ STATIC_URL }}/css/home.css" type="text/css" media="all" />
+<link rel="stylesheet" href="{{ STATIC_URL }}/css/auth/auth.css" type="text/css" media="all" />
+{% endblock %}
+
+{% block js %}
+<script>
+$(document).ready(function(){
+    var error = $(".errorclass").html();
+    if(!error){
+        $(".home-main").animate({
+            margin: '40px auto;',
+        },400);
+        $(".login-form").animate({
+            marginLeft:'0',
+        },1200);
+    }
+    else{
+        $(".home-main").css("margin","40px auto");
+        $(".login-form").css("margin-left","0");
+    }
+
+    $("input").keypress(function(event){
+        if(event.which == 13){
+            event.preventDefault();
+            $("form").submit();
+        }
+    });
+});
+</script>
+{% endblock%}
+
+{% block account %}
+
+<div class="login-main">
+<form class="login-form" action="{% url 'auth_login' %}" method="post">
+    {% csrf_token %}
+    <div>
+        <input class="text-input" type="text" name="username" placeholder=" 用户名 / 邮箱" />
+        {% if form.username.errors %}
+        {% for error in form.username.errors %}
+        <span class="errorclass">{{ error }}</span>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+    <div>
+        <input class="text-input" type="password" name="password" placeholder=" 密码" />
+        {% if form.password.errors %}
+        {% for error in form.password.errors %}
+        <span class="errorclass">{{ error }}</span>
+        {% endfor %}
+        {% endif %}
+    </div>
+    <input type="hidden" name="next" value={{ request.REQUEST.next }} />
+    <div style="height: 30px; position: relative;">
+        {{ form.remember_me }}
+        <span style="font-size:12px; color: #DDDDDD; position:absolute; margin-top:5px">记住密码</span>
+    </div>
+    
+    <a href="" onclick="document.forms[0].submit();return false;">登 录</a>
+</form>
+</div>
+
+{% endblock %}

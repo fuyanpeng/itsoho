@@ -1,0 +1,29 @@
+<div class="header">
+    <div style="width:1024px; margin: auto;">
+        <a href="{% url 'home' %}" ><span class="header-logo"></span></a>
+        <div class="header-nav">
+            <ul>
+                <li><a href="{% url 'home' %}" >首页</a></li>
+                <li><a href="#" >SOHO广场</a></li>
+                <li><a href="{% url 'charge_index' %}" >加油站</a></li>
+                <li><a href="#" >关于</a></li>
+            </ul>
+        </div>
+        <div class="header-account">
+            {% if user.is_authenticated %}
+            <div class="account-avatar">
+                <a href="{% url 'manage_home' %}"><img src="{{ user.get_avatar_url }}" /></a>
+            </div>
+            <ul class="avatar-select">
+                <li class="avatar-option"><a href="{% url 'manage_home' %}">个人中心</a></li>
+                <li class="avatar-option"><a>查看私信</a></li>
+                <li class="avatar-option"><a>查看@我</a></li>
+                <li class="avatar-option"><a href="{% url 'auth_logout' %}">退出</a></li>
+            </ul>
+            {% else %}
+            <a class="auth" href="{% url 'auth_register' %}">注册</a>
+            <a class="auth" href="{% url 'auth_login' %}?next={{ request.path }}">登录</a>
+            {% endif %}
+        </div>
+    </div>
+</div>

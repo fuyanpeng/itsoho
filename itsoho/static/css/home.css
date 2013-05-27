@@ -1,0 +1,22 @@
+body {
+    background: url("/static/img/bgs/bg1.jpg") no-repeat fixed 0 -100px / cover #000000
+}
+
+.home-main {
+    margin: auto;
+    margin-top: 200px;
+    width: 420px;
+    color: #FFFFFF;
+}
+
+.home-logo-img {
+    width: 400px;
+    height: 100px;
+    background: url("/static/img/home-logo.png") no-repeat;
+}
+
+.home-logo-word {
+    font-size: 18px;
+    letter-spacing: 7px;
+    margin-top: 20px;
+}

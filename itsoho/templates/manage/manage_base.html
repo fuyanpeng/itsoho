@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block css %}{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}admin/css/widgets.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/manage/manage_base.css" type="text/css" media="all" />
+{% block manage_css %} {% endblock %}
+{% endblock %}
+
+{% block js %}{{ block.super }}
+<script type="text/javascript" src="/jsi18n/"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}admin/js/core.js"></script>
+<script type="text/javascript">window.__admin_media_prefix__ = "/static/admin/";</script>
+<script>
+$(document).ready(function(){
+    $("#private").toggle(function(){
+       $("#private-list").slideUp(200); 
+    },function(){
+       $("#private-list").slideDown(200); 
+    });
+});
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="manage-menu">
+    <ul class="level-1">
+        <a href=""><li class="option" >帐号设置</li></a>
+        <a href=""><li class="option" id="private">个人资料</li></a>
+        <ul class="level-2" id="private-list">
+            <a href="{% url 'manage_baseinfo' %}"><li class="secondary" >基本信息</li></a>
+            <a href=""><li class="secondary" >修改头像</li></a>
+            <a href=""><li class="secondary" >联系方式</li></a>
+            <a href="{% url 'manage_eduinfo' %}"><li class="secondary" >教育经历</li></a>
+            <a href=""><li class="secondary" >工作经历</li></a>
+        </ul>
+        <a href=""><li class="option" >身份认证</li></a>
+        <a href=""><li class="option" >公司管理</li></a>
+        <a href=""><li class="option" >会员中心</li></a>
+    </ul> 
+</div>
+<div class="manage-main">
+    {% block manage_main %}
+    {% endblock %}
+</div>
+<div style="clear: both;"></div>
+{% endblock %}

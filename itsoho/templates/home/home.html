@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block css %}
+<link rel="stylesheet" href="{{ STATIC_URL }}/css/home.css" type="text/css" media="all" />
+
+{% endblock %}
+
+{% block content %}
+<div class="home-main">
+    <div class="home-logo-img"></div>
+    <div class="home-logo-word">
+        选择SOHO, 释放工作与生活的枷锁
+    </div>
+</div>
+{% block account %}{% endblock %}
+{% endblock %}

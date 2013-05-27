@@ -1,0 +1,83 @@
+{% extends 'manage/manage_base.html' %}
+
+{% block manage_css %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/manage/manage_detail.css" type="text/css" media="all" />
+{% endblock %}
+
+
+{% block manage_main %}
+<div class="manage-name">
+    基本信息
+</div>
+{{ form.media }}
+<form class="manage-form" action="." method="POST">
+    {% csrf_token %}
+
+    <div class="control-group">
+        <label class="control-label">真实姓名：</label>
+        <div class="controls">
+            {{ form.truename }}
+            {{ form.truename_visible }}
+        </div>
+        <div class="current-error">
+        {% for error in form.truename.errors %}
+            ! {{ error }}
+        {% endfor %}
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label">昵称：</label>
+        <div class="controls">
+            {{ form.nickname }}
+        </div>
+        <div class="current-error">
+        {% for error in form.nickname.errors %}
+             ! {{ error }}
+        {% endfor %}
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label">性别：</label>
+        <div class="controls">
+            {{ form.gender }}
+        </div>
+        <div class="current-error">
+        {% for error in form.gender.errors %}
+            ! {{ error }}
+        {% endfor %}
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label">出生日期：</label>
+        <div class="controls">
+            {{ form.birthday }}
+            {{ form.birthday_visible }}
+        </div>
+        <div class="current-error">
+        {% for error in form.birthday.errors %}
+             ! {{ error }}
+        {% endfor %}
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label">简介：</label>
+        <div class="controls">
+            {{ form.intro }}
+        </div>
+        <div class="current-error">
+        {% for error in form.intro.errors %}
+             ! {{ error }}
+        {% endfor %}
+        </div>
+    </div>
+    
+    <div class="control-btn">
+        <a class="manage-save" href="" onclick="document.forms[0].submit();return false;">保 存</a>
+    </div>
+    
+</form>
+{% endblock %}
